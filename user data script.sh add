@@ -1,0 +1,12 @@
+resource "aws_instance" "vm" {
+    ami = "ami-078264b8ba71bc45e"
+    instance_type = "t2.micro"
+    count = 3
+    key_name = "rahul"
+    user_data = file("${path.module}/script.sh")
+
+    tags = {
+        Name = "sai_${count.index +1}"
+    }
+
+}
